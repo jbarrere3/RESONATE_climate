@@ -57,7 +57,7 @@ list(
   tar_target(df.ssp.date, expand.grid(
     date = c("2015_2020", "2021_2030", "2031_2040", "2051_2060", 
              "2061_2070", "2071_2080", "2081_2090", "2091_2100"),
-    ssp = c("ssp126", "ssp370", "ssp5585"))), 
+    ssp = c("ssp126", "ssp370", "ssp585"))), 
   # - Vector of same length as df.ssp.date (will be useful for branching)
   tar_target(ID.ssp.date, c(1:dim(df.ssp.date)[1])),
   # - Extract future climate 

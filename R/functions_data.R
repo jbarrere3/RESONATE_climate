@@ -28,6 +28,14 @@ create_dir_if_needed <- function(file.in){
   }
 }
 
+#' Write a table on disk
+#' @param table.in dataframe to write on the disk
+#' @param file.in Name (and path) of the file on the disk
+write_on_disk <- function(table.in, file.in){
+  create_dir_if_needed(file.in)
+  write.table(table.in, file = file.in, row.names = F)
+  return(file.in)
+}
 
 
 
@@ -452,4 +460,21 @@ compile_future_clim_all = function(future_clim_isimip){
   
   # Return output dataset
   return(out)
+}
+
+
+#' summarize future climate per year, ssp scenario, and case study
+#' @param future_clim_all future climate for all location points (several per cs)
+summarize_future_clim = function(future_clim_all){
+  
+  future_clim_all %>%
+    filter(pet > 0) %>%
+    group_by(cs, ssp, year) %>%
+    summarize(elevation = mean(elevation, na.rm = TRUE), 
+              tmean = mean(tmean, na.rm = TRUE), 
+              prec = mean(prec, na.rm = TRUE), 
+              pet = mean(pet, na.rm = TRUE),
+              wai = mean(wai, na.rm = TRUE), 
+              sgdd = mean(sgdd, na.rm = TRUE)) %>%
+    arrange(cs, ssp, year)
 }

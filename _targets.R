@@ -65,7 +65,12 @@ list(
     dir.isimip, data.wc, df.ssp.date$ssp[ID.ssp.date], 
     df.ssp.date$date[ID.ssp.date]), pattern = map(ID.ssp.date), iteration = "list"), 
   # - Compile data in one data frame
-  tar_target(future_clim_all, compile_future_clim_all(future_clim_isimip))
+  tar_target(future_clim_all, compile_future_clim_all(future_clim_isimip)), 
+  # - Average across each case study
+  tar_target(future_clim, summarize_future_clim(future_clim_all)), 
+  # - Export future climate file
+  tar_target(future_clim_file, write_on_disk(
+    future_clim, "output/future_clim.csv"), format = "file")
   
   
   

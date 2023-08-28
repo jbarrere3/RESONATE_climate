@@ -436,3 +436,20 @@ get_future_clim_isimip = function(dir.isimip, data.wc, ssp.in, date.in){
   return(out)
   
 }
+
+
+#' Compile the list of future climate in one dataframe
+#' @param future_clim_isimip Data containing isimip future climate per point
+compile_future_clim_all = function(future_clim_isimip){
+  
+  # Initialize output dataset
+  out = future_clim_isimip[[1]]
+  
+  # Loop on other elements of the list 
+  for(i in 2:length(names(future_clim_isimip))){
+    out = rbind(out, future_clim_isimip[[i]])
+  } 
+  
+  # Return output dataset
+  return(out)
+}

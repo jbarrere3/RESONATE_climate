@@ -63,7 +63,9 @@ list(
   # - Extract future climate 
   tar_target(future_clim_isimip, get_future_clim_isimip(
     dir.isimip, data.wc, df.ssp.date$ssp[ID.ssp.date], 
-    df.ssp.date$date[ID.ssp.date]), pattern = map(ID.ssp.date), iteration = "list")
+    df.ssp.date$date[ID.ssp.date]), pattern = map(ID.ssp.date), iteration = "list"), 
+  # - Compile data in one data frame
+  tar_target(future_clim_all, compile_future_clim_all(future_clim_isimip))
   
   
   

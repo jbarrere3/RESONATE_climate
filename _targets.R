@@ -69,6 +69,8 @@ list(
   # - Average across each case study
   tar_target(future_clim, summarize_future_clim(future_clim_all)), 
   # - Export future climate file
+  tar_target(future_clim_file_all, write_on_disk(
+    future_clim_all, "output/future_clim_all.csv"), format = "file"), 
   tar_target(future_clim_file, write_on_disk(
     future_clim, "output/future_clim.csv"), format = "file")
   

@@ -55,7 +55,7 @@ list(
   tar_target(dir.isimip, "data/isimip", format = "file"), 
   # - All combinations of ssp scenarios and time period of data
   tar_target(df.ssp.date, expand.grid(
-    date = c("2015_2020", "2021_2030", "2031_2040", "2051_2060", 
+    date = c("2015_2020", "2021_2030", "2031_2040", "2041_2050", "2051_2060", 
              "2061_2070", "2071_2080", "2081_2090", "2091_2100"),
     ssp = c("ssp126", "ssp370", "ssp585"))), 
   # - Vector of same length as df.ssp.date (will be useful for branching)
